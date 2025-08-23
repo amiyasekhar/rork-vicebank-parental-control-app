@@ -45,7 +45,7 @@ export default function OBBlocklist() {
           style={{ maxHeight: 200 }}
         />
       </Card>
-      <Button title="Continue" onPress={() => router.push("/onboarding/grace")} />
+      <Button title="Continue" onPress={() => router.push("/onboarding/mode-plan")} />
     </View>
   );
 }

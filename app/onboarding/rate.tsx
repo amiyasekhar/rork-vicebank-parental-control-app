@@ -21,7 +21,11 @@ export default function OBRate() {
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: "Set Your Rate" }} />
-      <Text style={styles.helper}>Only after grace.</Text>
+      <Text style={styles.helper}>
+        This is the price you agree to pay only if you continue after your grace period.
+        Your current grace is {Math.round((settings.graceSeconds ?? 0) / 60)} min. We meter time after that at the
+        rate below. You can change this later in Settings.
+      </Text>
       <View style={styles.inputWrap}>
         <Text style={styles.dollar}>$</Text>
         <TextInput

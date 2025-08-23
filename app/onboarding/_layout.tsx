@@ -15,9 +15,9 @@ import { Stack } from "expo-router";
           <Stack.Screen name="welcome" />
           <Stack.Screen name="permissions" />
           <Stack.Screen name="questionnaire" />
+          <Stack.Screen name="grace" />
           <Stack.Screen name="rate" />
           <Stack.Screen name="blocklist" />
-          <Stack.Screen name="grace" />
           <Stack.Screen name="mode-plan" />
         </Stack>
       );

@@ -59,7 +59,7 @@ import React, { useState } from "react";
             <Slider
               min={0}
               max={180}
-              step={15}
+              step={1}
               value={settings.graceSeconds}
               onChange={(v) => updateSettings({ graceSeconds: v })}
               formatLabel={(v) => `${(v / 60).toFixed(2)} min`}

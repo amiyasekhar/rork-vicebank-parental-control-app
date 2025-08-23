@@ -12,12 +12,15 @@ import React, { useState } from "react";
       const [val, setVal] = useState<number>(settings.graceSeconds ?? 180);
       return (
         <View style={styles.container}>
-          <Stack.Screen options={{ title: "Set Grace" }} />
-          <Text style={styles.helper}>Warn at 80%, meter after.</Text>
+          <Stack.Screen options={{ title: "Set Your Meter" }} />
+          <Text style={styles.helper}>
+            Choose a grace period where usage is free. We’ll warn you at 80% of your grace time.
+            After grace ends, time will be metered and can incur cost based on the rate you set next.
+          </Text>
           <Slider
             min={0}
             max={180}
-            step={15}
+            step={1}
             value={val}
             onChange={setVal}
             formatLabel={(v) => `${formatSecondsMMSS(v)} min`}
@@ -26,7 +29,7 @@ import React, { useState } from "react";
             title="Continue"
             onPress={() => {
               updateSettings({ graceSeconds: val });
-              router.push("/onboarding/mode-plan");
+              router.push("/onboarding/rate");
             }}
           />
         </View>
