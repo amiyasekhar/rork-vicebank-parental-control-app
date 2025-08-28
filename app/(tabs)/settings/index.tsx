@@ -2,7 +2,6 @@ import React, { useState } from "react";
     import { Link, Stack } from "expo-router";
     import { StyleSheet, Text, TextInput, View } from "react-native";
     import { Colors } from "@/constants/theme";
-    import { Toggle } from "@/components/ui/Toggle";
     import { Button } from "@/components/ui/Button";
     import { Slider } from "@/components/ui/Slider";
     import { useApp } from "@/providers/AppStateProvider";
@@ -14,14 +13,7 @@ import React, { useState } from "react";
       return (
         <View style={styles.container}>
           <Stack.Screen options={{ headerShown: false }} />
-          <View style={styles.card}>
-            <Text style={styles.title}>Protection</Text>
-            <Toggle
-              value={settings.protectionEnabled}
-              onValueChange={(v) => updateSettings({ protectionEnabled: v })}
-              label="Turn Protection ON"
-            />
-          </View>
+          {/* Protection toggle removed per product decision */}
           <View style={styles.card}>
             <Text style={styles.title}>Mode &amp; Plan</Text>
             <View style={styles.row}>

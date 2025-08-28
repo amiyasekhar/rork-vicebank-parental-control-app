@@ -12,7 +12,7 @@ const QUESTIONNAIRE_KEY = "vicebank.q.answers.v1";
 
 function defaultSettings(): SettingsState {
   return {
-    protectionEnabled: false,
+    protectionEnabled: true,
     mode: "SOFT_GATE",
     plan: "PAYG",
     graceSeconds: 180,

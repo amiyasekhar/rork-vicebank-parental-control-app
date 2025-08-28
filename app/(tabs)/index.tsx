@@ -6,7 +6,6 @@ import { Gauge, DollarSign } from "lucide-react-native";
 import { useApp } from "@/providers/AppStateProvider";
 import { Colors } from "@/constants/theme";
 import { Card } from "@/components/ui/Card";
-import { Banner } from "@/components/ui/Banner";
 import { centsToDollarString } from "@/utils/currency";
 import { formatSecondsMMSS } from "@/utils/time";
 
@@ -38,9 +37,7 @@ export default function Dashboard() {
       <LinearGradient colors={["#1B1326", "#0A0A0A"]} style={styles.bgGrad} />
       <View style={styles.bubbleA} />
       <View style={styles.bubbleB} />
-      {!settings.protectionEnabled ? (
-        <Banner tone="warning" text="Protection OFF — Turn Protection ON" />
-      ) : null}
+      {/* Protection banner removed per product decision */}
 
       <View style={styles.cardsWrap}>
         <Card title="Time watched today" style={styles.narrowCard}>
