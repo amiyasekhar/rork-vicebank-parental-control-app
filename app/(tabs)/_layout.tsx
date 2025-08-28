@@ -8,10 +8,11 @@ import { Tabs } from "expo-router";
         <Tabs
           screenOptions={{
             tabBarActiveTintColor: Colors.purple,
-            headerStyle: { backgroundColor: Colors.background },
+            headerStyle: { backgroundColor: "transparent" },
             headerTintColor: Colors.text,
             tabBarStyle: { backgroundColor: Colors.surface },
             tabBarInactiveTintColor: Colors.textMuted,
+            sceneStyle: { backgroundColor: "transparent" },
           }}
         >
           <Tabs.Screen

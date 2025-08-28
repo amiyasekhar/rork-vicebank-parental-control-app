@@ -68,6 +68,7 @@ export const [AppProvider, useApp] = createContextHook(() => {
   });
   const [answers, setAnswers] = useState<QuestionnaireAnswer[]>([]);
   const bootedRef = useRef<boolean>(false);
+  const [booted, setBooted] = useState<boolean>(false);
 
   useEffect(() => {
     (async () => {
@@ -86,26 +87,27 @@ export const [AppProvider, useApp] = createContextHook(() => {
         console.log("Failed to load persisted state", e);
       } finally {
         bootedRef.current = true;
+        setBooted(true);
       }
     })();
   }, []);
 
   useEffect(() => {
-    if (!bootedRef.current) return;
+    if (!booted) return;
     AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)).catch(() => {});
-  }, [settings]);
+  }, [settings, booted]);
   useEffect(() => {
-    if (!bootedRef.current) return;
+    if (!booted) return;
     AsyncStorage.setItem(BLOCKLIST_KEY, JSON.stringify(blocklist)).catch(() => {});
-  }, [blocklist]);
+  }, [blocklist, booted]);
   useEffect(() => {
-    if (!bootedRef.current) return;
+    if (!booted) return;
     AsyncStorage.setItem(USAGE_TODAY_KEY, JSON.stringify(todayUsage)).catch(() => {});
-  }, [todayUsage]);
+  }, [todayUsage, booted]);
   useEffect(() => {
-    if (!bootedRef.current) return;
+    if (!booted) return;
     AsyncStorage.setItem(QUESTIONNAIRE_KEY, JSON.stringify(answers)).catch(() => {});
-  }, [answers]);
+  }, [answers, booted]);
 
   const isOnboarded = Boolean(settings.onboardedAt);
   const featureFlags = useMemo<FeatureFlags>(() => flagsForPlan(settings.plan), [settings.plan]);
@@ -274,7 +276,28 @@ export const [AppProvider, useApp] = createContextHook(() => {
     });
   }, []);
 
+  const resetAll = useCallback(async () => {
+    await Promise.all([
+      AsyncStorage.removeItem(SETTINGS_KEY),
+      AsyncStorage.removeItem(BLOCKLIST_KEY),
+      AsyncStorage.removeItem(USAGE_TODAY_KEY),
+      AsyncStorage.removeItem(QUESTIONNAIRE_KEY),
+    ]).catch(() => {});
+    setSettings(defaultSettings());
+    setBlocklist([]);
+    setTodayUsage({
+      date: new Date().toDateString(),
+      freeSeconds: 0,
+      paidSeconds: 0,
+      costCents: 0,
+      graceRemainingSeconds: 180,
+      resetsAtEpochMs: localMidnightEpochMs(),
+    });
+    setAnswers([]);
+  }, []);
+
   return {
+    booted,
     settings,
     featureFlags,
     isOnboarded,
@@ -295,6 +318,7 @@ export const [AppProvider, useApp] = createContextHook(() => {
     answers,
     setQuestionAnswer,
     queryClient,
+    resetAll,
   };
 });
 

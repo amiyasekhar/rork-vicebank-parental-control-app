@@ -1,6 +1,8 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
     import { Stack } from "expo-router";
     import { StyleSheet, Text, View } from "react-native";
+    import { LinearGradient } from "expo-linear-gradient";
+    import { Clock3 } from "lucide-react-native";
     import { Colors } from "@/constants/theme";
     import { Button } from "@/components/ui/Button";
     import { useSessionTimer } from "@/hooks/useSessionTimer";
@@ -9,6 +11,10 @@ import React, { useMemo } from "react";
     
     export default function SessionScreen() {
       const { session, startSession, stopSession, commitSession, settings, todayUsage } = useSessionTimer();
+
+      useEffect(() => {
+        if (!session.running) startSession();
+      }, [session.running, startSession]);
     
       const stateLabel = useMemo(() => {
         if (!session.running) return "Idle";
@@ -20,17 +26,15 @@ import React, { useMemo } from "react";
       return (
         <View style={styles.container} testID="session">
           <Stack.Screen options={{ title: "Session" }} />
+          <LinearGradient colors={["#141021", "#0A0A0A"]} style={styles.bgGrad} />
           <Text style={styles.h1}>{stateLabel}</Text>
-          <Text style={styles.timer}>{formatSecondsMMSS(session.elapsedSeconds)}</Text>
+          <View style={styles.timerRow}>
+            <Clock3 color={Colors.purple} />
+            <Text style={styles.timer}>{formatSecondsMMSS(session.elapsedSeconds)}</Text>
+          </View>
           <View style={styles.row}>
-            {!session.running ? (
-              <Button title="Start" onPress={startSession} testID="start-btn" />
-            ) : (
-              <>
-                <Button variant="secondary" title="Pause" onPress={stopSession} />
-                <Button title="End Session" onPress={commitSession} />
-              </>
-            )}
+            <Button variant="secondary" title="Pause" onPress={stopSession} />
+            <Button title="End Session" onPress={commitSession} />
           </View>
           <Text style={styles.note}>Grace remaining today: {formatSecondsMMSS(todayUsage.graceRemainingSeconds)}</Text>
         </View>
@@ -39,7 +43,9 @@ import React, { useMemo } from "react";
     
     const styles = StyleSheet.create({
       container: { flex: 1, backgroundColor: Colors.background, alignItems: "center", justifyContent: "center", padding: 16, gap: 16 },
+      bgGrad: { ...StyleSheet.absoluteFillObject, opacity: 0.3 },
       h1: { color: Colors.text, fontSize: 16 },
+      timerRow: { flexDirection: "row", alignItems: "center", gap: 8 },
       timer: { color: Colors.text, fontSize: 48, fontWeight: "800", letterSpacing: 2 },
       row: { flexDirection: "row", gap: 12 },
       note: { color: Colors.textMuted },

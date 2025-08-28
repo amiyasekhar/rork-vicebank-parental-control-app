@@ -33,7 +33,7 @@ export class ErrorBoundary extends React.Component<React.PropsWithChildren, Stat
   }
 }
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: Colors.background, padding: 20, justifyContent: "center" },
+  container: { flex: 1, backgroundColor: "transparent", padding: 20, justifyContent: "center" },
   title: { color: Colors.text, fontSize: 18, fontWeight: "700", marginBottom: 12, textAlign: "center" },
   scroll: { maxHeight: 180, marginBottom: 16 },
   error: { color: Colors.textMuted },

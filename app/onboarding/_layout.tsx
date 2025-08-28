@@ -6,9 +6,9 @@ import { Stack } from "expo-router";
       return (
         <Stack
           screenOptions={{
-            headerStyle: { backgroundColor: Colors.background },
+            headerStyle: { backgroundColor: "transparent" },
             headerTintColor: Colors.text,
-            contentStyle: { backgroundColor: Colors.background },
+            contentStyle: { backgroundColor: "transparent" },
             headerTitle: "",
           }}
         >
@@ -18,7 +18,7 @@ import { Stack } from "expo-router";
           <Stack.Screen name="grace" />
           <Stack.Screen name="rate" />
           <Stack.Screen name="blocklist" />
-          <Stack.Screen name="mode-plan" />
+          {/** mode-plan removed from the flow */}
         </Stack>
       );
     }

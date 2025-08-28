@@ -51,7 +51,7 @@ export default function SettingsBlocklist() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: Colors.background, padding: 16 },
+  container: { flex: 1, backgroundColor: "transparent", padding: 16 },
   row: { flexDirection: "row", gap: 8, marginBottom: 12 },
   input: { flex: 1, height: 48, backgroundColor: Colors.surface, borderRadius: 12, borderWidth: 1, borderColor: Colors.border, color: Colors.text, paddingHorizontal: 12 },
   item: { flexDirection: "row", alignItems: "center", paddingVertical: 12 },

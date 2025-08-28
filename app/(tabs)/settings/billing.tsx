@@ -24,6 +24,6 @@ import React from "react";
       );
     }
     const styles = StyleSheet.create({
-      container: { flex: 1, backgroundColor: Colors.background, padding: 16, gap: 12 },
+      container: { flex: 1, backgroundColor: "transparent", padding: 16, gap: 12 },
       text: { color: Colors.text },
     });

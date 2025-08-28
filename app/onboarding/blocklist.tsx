@@ -8,7 +8,7 @@ import { Toggle } from "@/components/ui/Toggle";
 import { useApp } from "@/providers/AppStateProvider";
 
 export default function OBBlocklist() {
-  const { blocklist, addCustomDomain, toggleBlocklistItem } = useApp();
+  const { blocklist, addCustomDomain, toggleBlocklistItem, updateSettings, setOnboarded } = useApp();
   const [input, setInput] = useState<string>("");
   return (
     <View style={styles.container}>
@@ -45,7 +45,14 @@ export default function OBBlocklist() {
           style={{ maxHeight: 200 }}
         />
       </Card>
-      <Button title="Continue" onPress={() => router.push("/onboarding/mode-plan")} />
+      <Button
+        title="Go to Dashboard"
+        onPress={() => {
+          updateSettings({ protectionEnabled: true });
+          setOnboarded();
+          router.replace("/");
+        }}
+      />
     </View>
   );
 }

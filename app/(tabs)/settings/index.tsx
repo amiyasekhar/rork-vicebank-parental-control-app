@@ -9,7 +9,7 @@ import React, { useState } from "react";
     import { centsToDollarString } from "@/utils/currency";
     
     export default function SettingsIndex() {
-      const { settings, updateSettings } = useApp();
+      const { settings, updateSettings, resetAll } = useApp();
       const [rate, setRate] = useState<string>(((settings.rateCents ?? 5) / 100).toFixed(2));
       return (
         <View style={styles.container}>
@@ -93,13 +93,14 @@ import React, { useState } from "react";
             <Link href="/(tabs)/settings/blocklist" style={styles.link}><Text style={styles.linkText}>Blocklist</Text></Link>
             <Link href="/(tabs)/settings/billing" style={styles.link}><Text style={styles.linkText}>Billing &amp; Account</Text></Link>
             <Link href="/(tabs)/settings/permissions" style={styles.link}><Text style={styles.linkText}>Permissions &amp; Privacy</Text></Link>
+            <Button variant="secondary" title="Reset app data" onPress={resetAll} />
           </View>
         </View>
       );
     }
     
     const styles = StyleSheet.create({
-      container: { flex: 1, backgroundColor: Colors.background, padding: 16, gap: 12 },
+      container: { flex: 1, backgroundColor: "transparent", padding: 16, gap: 12 },
       card: { backgroundColor: Colors.card, borderRadius: 16, borderWidth: 1, borderColor: Colors.border, padding: 16, gap: 12 },
       title: { color: Colors.text, fontSize: 16, fontWeight: "700" },
       row: { flexDirection: "row", gap: 8, flexWrap: "wrap" },

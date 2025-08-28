@@ -2,7 +2,10 @@
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
+import { StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { AppProvider } from "@/providers/AppStateProvider";
 import { Colors } from "@/constants/theme";
@@ -16,9 +19,9 @@ function RootLayoutNav() {
     <Stack
       screenOptions={{
         headerBackTitle: "Back",
-        headerStyle: { backgroundColor: Colors.background },
+        headerStyle: { backgroundColor: "transparent" },
         headerTintColor: Colors.text,
-        contentStyle: { backgroundColor: Colors.background },
+        contentStyle: { backgroundColor: "transparent" },
       }}
     >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -38,7 +41,12 @@ export default function RootLayout() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <ErrorBoundary>
           <AppProvider>
-            <RootLayoutNav />
+            <View style={{ flex: 1, backgroundColor: Colors.background }}>
+              <LinearGradient colors={["#1B1326", "#0A0A0A"]} style={{ ...StyleSheet.absoluteFillObject, opacity: 0.25 }} />
+              <View style={{ position: "absolute", top: -60, right: -40, width: 220, height: 220, borderRadius: 110, backgroundColor: Colors.purple, opacity: 0.12 }} />
+              <View style={{ position: "absolute", bottom: 120, left: -70, width: 260, height: 260, borderRadius: 130, backgroundColor: Colors.purple, opacity: 0.08 }} />
+              <RootLayoutNav />
+            </View>
           </AppProvider>
         </ErrorBoundary>
       </GestureHandlerRootView>

@@ -51,7 +51,7 @@ import React from "react";
     }
     
     const styles = StyleSheet.create({
-      container: { flex: 1, backgroundColor: Colors.background, padding: 16, gap: 16 },
+      container: { flex: 1, backgroundColor: "transparent", padding: 16, gap: 16 },
       item: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingVertical: 12, gap: 12 },
       itemText: { flex: 1, gap: 4 },
       label: { color: Colors.text, fontSize: 16, fontWeight: "600" },

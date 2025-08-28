@@ -36,6 +36,6 @@ import React, { useState } from "react";
       );
     }
     const styles = StyleSheet.create({
-      container: { flex: 1, backgroundColor: Colors.background, padding: 16, gap: 16 },
+      container: { flex: 1, backgroundColor: "transparent", padding: 16, gap: 16 },
       helper: { color: Colors.textMuted },
     });

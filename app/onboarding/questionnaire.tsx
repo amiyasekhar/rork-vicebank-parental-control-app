@@ -161,7 +161,7 @@ export default function OBQ() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: Colors.background, padding: 16, gap: 16 },
+  container: { flex: 1, backgroundColor: "transparent", padding: 16, gap: 16 },
   option: {
     borderRadius: 12,
     borderWidth: 1,

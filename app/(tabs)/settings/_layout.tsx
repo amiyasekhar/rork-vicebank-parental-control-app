@@ -6,9 +6,9 @@ import { Stack } from "expo-router";
       return (
         <Stack
           screenOptions={{
-            headerStyle: { backgroundColor: Colors.background },
+            headerStyle: { backgroundColor: "transparent" },
             headerTintColor: Colors.text,
-            contentStyle: { backgroundColor: Colors.background },
+            contentStyle: { backgroundColor: "transparent" },
           }}
         >
           <Stack.Screen name="index" options={{ title: "Settings" }} />

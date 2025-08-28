@@ -90,7 +90,7 @@ export default function HistoryScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: Colors.background, padding: 16, gap: 12 },
+  container: { flex: 1, backgroundColor: "transparent", padding: 16, gap: 12 },
   tabs: { flexDirection: "row", gap: 8 },
   item: { paddingVertical: 12, borderBottomWidth: 1, borderBottomColor: Colors.border },
   date: { color: Colors.text, fontWeight: "700", marginBottom: 4 },
