@@ -2,9 +2,8 @@
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { AppProvider } from "@/providers/AppStateProvider";
@@ -42,9 +41,25 @@ export default function RootLayout() {
         <ErrorBoundary>
           <AppProvider>
             <View style={{ flex: 1, backgroundColor: Colors.background }}>
-              <LinearGradient colors={["#1B1326", "#0A0A0A"]} style={{ ...StyleSheet.absoluteFillObject, opacity: 0.25 }} />
-              <View style={{ position: "absolute", top: -60, right: -40, width: 220, height: 220, borderRadius: 110, backgroundColor: Colors.purple, opacity: 0.12 }} />
-              <View style={{ position: "absolute", bottom: 120, left: -70, width: 260, height: 260, borderRadius: 130, backgroundColor: Colors.purple, opacity: 0.08 }} />
+              <LinearGradient
+                pointerEvents="none"
+                colors={["#1B1326", "#0A0A0A"]}
+                style={{ ...StyleSheet.absoluteFillObject, opacity: 0.25 }}
+                renderToHardwareTextureAndroid
+                shouldRasterizeIOS
+              />
+              <View
+                pointerEvents="none"
+                style={{ position: "absolute", top: -60, right: -40, width: 220, height: 220, borderRadius: 110, backgroundColor: Colors.purple, opacity: 0.12 }}
+                renderToHardwareTextureAndroid
+                shouldRasterizeIOS
+              />
+              <View
+                pointerEvents="none"
+                style={{ position: "absolute", bottom: 120, left: -70, width: 260, height: 260, borderRadius: 130, backgroundColor: Colors.purple, opacity: 0.08 }}
+                renderToHardwareTextureAndroid
+                shouldRasterizeIOS
+              />
               <RootLayoutNav />
             </View>
           </AppProvider>
