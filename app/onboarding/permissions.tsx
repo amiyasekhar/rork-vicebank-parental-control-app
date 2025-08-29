@@ -9,6 +9,7 @@ import React from "react";
     
     export default function OBPermissions() {
       const { settings, updateSettings } = useApp();
+      const canContinue = settings.permissions.networkFilter && settings.permissions.usageAccess;
       return (
         <View style={styles.container}>
           <Stack.Screen options={{ title: "Enable Protection" }} />
@@ -45,7 +46,7 @@ import React from "react";
             </View>
           </Card>
           <Text style={styles.footer}>We store domains and timers, never page content. You can change these anytime.</Text>
-          <Button title="Continue" onPress={() => router.push("/onboarding/questionnaire")} />
+          <Button title="Continue" onPress={() => router.push("/onboarding/questionnaire")} disabled={!canContinue} />
         </View>
       );
     }

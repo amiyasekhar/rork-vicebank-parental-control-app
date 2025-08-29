@@ -1,8 +1,7 @@
 import React from "react";
     import { Stack, router } from "expo-router";
-    import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+    import { StyleSheet, Text, View } from "react-native";
     import { LinearGradient } from "expo-linear-gradient";
-    import { Shield, Clock3, DollarSign } from "lucide-react-native";
     import { Button } from "@/components/ui/Button";
     import { Colors, Gradients } from "@/constants/theme";
     
@@ -15,30 +14,16 @@ import React from "react";
           <View style={styles.bubbleB} />
 
           <View style={styles.center}>
-            <Text style={styles.brand}>
-              <Text style={styles.brandWhite}>Vice</Text>
-              <Text style={styles.brandPurple}>bank</Text>
-            </Text>
-            <Text style={styles.h1}>Block adult sites, meter time with a grace period, and only charge after it.</Text>
-
-            <View style={styles.features}>
-              <View style={styles.featureRow}>
-                <Shield color={Colors.purple} size={20} />
-                <Text style={styles.featureText}>Block access to flagged adult domains</Text>
-              </View>
-              <View style={styles.featureRow}>
-                <Clock3 color={Colors.purple} size={20} />
-                <Text style={styles.featureText}>Grace meter with an 80% early warning</Text>
-              </View>
-              <View style={styles.featureRow}>
-                <DollarSign color={Colors.purple} size={20} />
-                <Text style={styles.featureText}>Only pay per minute beyond grace (or choose SUB)</Text>
-              </View>
+            <View style={styles.hero}>
+              <Text style={styles.brand}>
+                <Text style={styles.brandWhite}>Vice</Text>
+                <Text style={styles.brandPurple}>bank</Text>
+              </Text>
+              <Text style={styles.h1}>Financial accountability to keep you from gooning.</Text>
             </View>
           </View>
 
           <View style={styles.footer}>
-            <Text style={styles.caption}>“We store domains and timers, never page content.”</Text>
             <Button title="Get Started" onPress={() => router.push("/onboarding/permissions")} />
           </View>
         </View>
@@ -50,14 +35,11 @@ import React from "react";
       bgGrad: { ...StyleSheet.absoluteFillObject, opacity: 0.06 },
       bubbleA: { position: "absolute", top: -60, right: -40, width: 220, height: 220, borderRadius: 110, backgroundColor: Colors.purple, opacity: 0.12 },
       bubbleB: { position: "absolute", bottom: 120, left: -70, width: 260, height: 260, borderRadius: 130, backgroundColor: Colors.purple, opacity: 0.08 },
-      center: { gap: 20 },
-      brand: { fontSize: 34, fontWeight: "800", letterSpacing: 0.5 },
+      center: { flex: 1, gap: 20 },
+      hero: { flexGrow: 1, alignItems: "center", justifyContent: "center", gap: 10 },
+      brand: { fontSize: 34, fontWeight: "800", letterSpacing: 0.5, textAlign: "center" },
       brandWhite: { color: Colors.text },
       brandPurple: { color: Colors.purple },
-      h1: { color: Colors.text, fontSize: 20, lineHeight: 30 },
-      features: { gap: 10, marginTop: 6 },
-      featureRow: { flexDirection: "row", alignItems: "center", gap: 8 },
-      featureText: { color: Colors.text, fontSize: 14 },
+      h1: { color: Colors.text, fontSize: 20, lineHeight: 30, textAlign: "center" },
       footer: { gap: 12, marginBottom: 12 },
-      caption: { color: Colors.textMuted, fontSize: 12, textAlign: "center" },
     });

@@ -18,7 +18,7 @@ import React from "react";
                 <Text style={styles.label}>Network Filter</Text>
                 <Text style={styles.desc}>Allows us to detect and block flagged domains on-device. We never inspect page content.</Text>
               </View>
-              <Toggle value={p.networkFilter} onValueChange={(v) => updateSettings({ permissions: { ...p, networkFilter: v } })} />
+              <Toggle value={p.networkFilter} onValueChange={(v) => updateSettings({ permissions: { ...p, networkFilter: v } })} disabled />
             </View>
 
             <View style={styles.item}>
@@ -26,7 +26,7 @@ import React from "react";
                 <Text style={styles.label}>Usage Access</Text>
                 <Text style={styles.desc}>Enables time tracking per app/site so we can meter and warn at your thresholds.</Text>
               </View>
-              <Toggle value={p.usageAccess} onValueChange={(v) => updateSettings({ permissions: { ...p, usageAccess: v } })} />
+              <Toggle value={p.usageAccess} onValueChange={(v) => updateSettings({ permissions: { ...p, usageAccess: v } })} disabled />
             </View>
 
             <View style={styles.item}>
@@ -34,7 +34,7 @@ import React from "react";
                 <Text style={styles.label}>Notifications</Text>
                 <Text style={styles.desc}>Sends reminders and warnings when you approach limits and when protection is active.</Text>
               </View>
-              <Toggle value={p.notifications} onValueChange={(v) => updateSettings({ permissions: { ...p, notifications: v } })} />
+              <Toggle value={p.notifications} onValueChange={(v) => updateSettings({ permissions: { ...p, notifications: v } })} disabled />
             </View>
           </Card>
           <Text style={styles.privacy}>We store domains and timers, never page content. You can change these anytime.</Text>

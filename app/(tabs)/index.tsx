@@ -53,11 +53,7 @@ export default function Dashboard() {
             <DollarSign color={Colors.purple} />
             <Text style={styles.big}>{centsToDollarString(todayUsage.costCents)}</Text>
           </View>
-          {settings.plan === "PAYG" ? (
-            <Text style={styles.small}>Rate: {centsToDollarString(settings.rateCents)}/min</Text>
-          ) : (
-            <Text style={styles.small}>Included in subscription</Text>
-          )}
+          <Text style={styles.small}>Rate: {centsToDollarString(settings.rateCents)}/min</Text>
         </Card>
       </View>
     </View>

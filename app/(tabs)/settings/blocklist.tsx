@@ -9,6 +9,7 @@ import { Toggle } from "@/components/ui/Toggle";
 export default function SettingsBlocklist() {
   const { blocklist, addCustomDomain, toggleBlocklistItem, removeBlocklistItem } = useApp();
   const [input, setInput] = useState<string>("");
+  const isEmpty = blocklist.length === 0;
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: "Blocklist" }} />
@@ -36,15 +37,7 @@ export default function SettingsBlocklist() {
           </View>
         )}
         ItemSeparatorComponent={() => <View style={styles.sep} />}
-      />
-      <View style={{ height: 8 }} />
-      <Button
-        variant="secondary"
-        title="Test Domain"
-        onPress={() => {
-          console.log("Test Domain tool would go here");
-          alert("Test tool placeholder: we simulate Blocked/Allowed in this prototype.");
-        }}
+        ListEmptyComponent={<Text style={styles.text}>No custom domains yet.</Text>}
       />
     </View>
   );

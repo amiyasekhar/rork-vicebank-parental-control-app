@@ -1,4 +1,4 @@
-export type PlanType = "PAYG" | "SUB";
+export type PlanType = "PAYG";
     export type ModeType = "METER_ONLY" | "SOFT_GATE" | "HARD_BLOCK";
     
     export interface BlocklistItem {

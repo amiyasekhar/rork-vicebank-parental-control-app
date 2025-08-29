@@ -7,20 +7,15 @@ import { useApp } from "@/providers/AppStateProvider";
 
 export default function OBRate() {
   const { settings, updateSettings } = useApp();
-  const [plan, setPlan] = useState(settings.plan);
   const [rate, setRate] = useState<string>(((settings.rateCents ?? 5) / 100).toFixed(2));
   const [error, setError] = useState<string | undefined>();
   const onNext = () => {
-    if (plan === "SUB") {
-      updateSettings({ plan: "SUB" });
-    } else {
-      const parsed = parseFloat(rate);
-      if (isNaN(parsed) || parsed < 0.05) {
-        setError("Minimum $0.05/min");
-        return;
-      }
-      updateSettings({ plan: "PAYG", rateCents: Math.round(parsed * 100) });
+    const parsed = parseFloat(rate);
+    if (isNaN(parsed) || parsed < 0.05) {
+      setError("Minimum $0.05/min");
+      return;
     }
+    updateSettings({ plan: "PAYG", rateCents: Math.round(parsed * 100) });
     router.push("/onboarding/blocklist");
   };
   return (
@@ -31,15 +26,6 @@ export default function OBRate() {
         Your current grace is {Math.round((settings.graceSeconds ?? 0) / 60)} min. We meter time after that at the
         rate below. You can change this later in Settings.
       </Text>
-      <Text style={styles.section}>Choose how you pay</Text>
-      <View style={styles.row}>
-        {[{ k: "PAYG", label: "Pay per minute" }, { k: "SUB", label: "SUB $9/mo" }].map((p) => (
-          <Pressable key={p.k} onPress={() => setPlan(p.k as typeof plan)} style={[styles.chip, plan === p.k && styles.chipOn]}>
-            <Text style={styles.chipText}>{p.label}</Text>
-          </Pressable>
-        ))}
-      </View>
-      {plan === "PAYG" ? (
       <View style={styles.inputWrap}>
         <Text style={styles.dollar}>$</Text>
         <TextInput
@@ -56,10 +42,7 @@ export default function OBRate() {
         />
         <Text style={styles.suffix}>/min</Text>
       </View>
-      ) : (
-        <Text style={styles.helper}>Subscription selected — per-minute charges are included.</Text>
-      )}
-      {plan === "PAYG" && error ? <Text style={styles.error}>{error}</Text> : null}
+      {error ? <Text style={styles.error}>{error}</Text> : null}
       <Button title="Continue" onPress={onNext} />
     </View>
   );
@@ -69,7 +52,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "transparent", padding: 16, gap: 16 },
   helper: { color: Colors.textMuted },
   section: { color: Colors.textMuted, marginTop: 4 },
-  row: { flexDirection: "row", gap: 8, flexWrap: "wrap" },
+  row: { flexDirection: "row", gap: 8, flexWrap: "wrap", justifyContent: "center" },
   chip: { borderRadius: 999, borderWidth: 1, borderColor: Colors.border, paddingHorizontal: 12, paddingVertical: 8, backgroundColor: Colors.surface },
   chipOn: { borderColor: Colors.purpleDark, backgroundColor: "#1B1730" },
   chipText: { color: Colors.text },

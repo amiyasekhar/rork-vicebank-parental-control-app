@@ -73,7 +73,7 @@ const QUESTIONS: Q[] = [
   },
   {
     key: "Q9",
-    title: "Spent money last 3 months",
+    title: "How much have you spent in the last 3 months",
     desc: "Any recent spending related to adult content?",
     type: "single",
     options: ["No", "Yes: <$10", "$10-$50", "$50-$200", "$200+"],
@@ -98,19 +98,19 @@ export default function OBQ() {
   const next = () => {
     setQuestionAnswer({ key: q.key, value: q.type === "single" ? selected[0] ?? null : selected });
     if (step === QUESTIONS.length - 1) {
-      router.push("/onboarding/grace");
+      router.push("/onboarding/percentile");
     } else {
       setSelected([]);
       setStep((s) => s + 1);
     }
   };
 
-  const skip = () => router.push("/onboarding/grace");
+  const skip = () => router.push("/onboarding/percentile");
   const choosePrefer = () => {
     const prefer = "Prefer not to say";
     setQuestionAnswer({ key: q.key, value: q.type === "single" ? prefer : [prefer] });
     if (step === QUESTIONS.length - 1) {
-      router.push("/onboarding/grace");
+      router.push("/onboarding/percentile");
     } else {
       setSelected([]);
       setStep((s) => s + 1);

@@ -7,9 +7,10 @@ import React, { memo, useCallback } from "react";
       onValueChange: (v: boolean) => void;
       label?: string;
       testID?: string;
+      disabled?: boolean;
     }
     
-    function ToggleBase({ value, onValueChange, label, testID }: Props) {
+    function ToggleBase({ value, onValueChange, label, testID, disabled }: Props) {
       const onPress = useCallback(() => onValueChange(!value), [onValueChange, value]);
       return (
         <View style={styles.row}>
@@ -17,7 +18,8 @@ import React, { memo, useCallback } from "react";
           <Pressable
             testID={testID ?? "toggle"}
             onPress={onPress}
-            style={[styles.base, value ? styles.on : styles.off]}
+            disabled={disabled}
+            style={[styles.base, value ? styles.on : styles.off, disabled ? styles.disabled : null]}
           >
             <View style={[styles.knob, value ? styles.knobOn : styles.knobOff]} />
           </Pressable>
@@ -44,6 +46,7 @@ import React, { memo, useCallback } from "react";
       },
       on: { backgroundColor: "#2D1B69" },
       off: { backgroundColor: Colors.surfaceElevated },
+      disabled: { opacity: 0.5 },
       knob: {
         width: 24,
         height: 24,

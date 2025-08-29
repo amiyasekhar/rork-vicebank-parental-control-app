@@ -58,7 +58,7 @@ export default function OBBlocklist() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: Colors.background, padding: 16, gap: 16 },
+  container: { flex: 1, backgroundColor: Colors.background, padding: 16, gap: 16, justifyContent: "flex-start" },
   addRow: { flexDirection: "row", gap: 8, alignItems: "center" },
   input: {
     flex: 1,

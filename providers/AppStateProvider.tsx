@@ -25,24 +25,15 @@ function defaultSettings(): SettingsState {
   };
 }
 
-function flagsForPlan(plan: PlanType): FeatureFlags {
-  return plan === "SUB"
-    ? {
-        spinsPerDay: 2,
-        historyRetentionDays: null,
-        csvExportsPerMonth: null,
-        chestIntervalDays: 3,
-        premiumThemes: true,
-        priorityBlocklist: true,
-      }
-    : {
-        spinsPerDay: 1,
-        historyRetentionDays: 30,
-        csvExportsPerMonth: 3,
-        chestIntervalDays: 4,
-        premiumThemes: false,
-        priorityBlocklist: false,
-      };
+function flagsForPlan(_plan: PlanType): FeatureFlags {
+  return {
+    spinsPerDay: 1,
+    historyRetentionDays: 30,
+    csvExportsPerMonth: 3,
+    chestIntervalDays: 4,
+    premiumThemes: false,
+    priorityBlocklist: false,
+  };
 }
 
 export const [AppProvider, useApp] = createContextHook(() => {
@@ -141,9 +132,9 @@ export const [AppProvider, useApp] = createContextHook(() => {
       pausedAt: null,
       totalPausedMs: 0,
       running: true,
-      withinGrace: settings.plan === "SUB" ? false : todayUsage.graceRemainingSeconds > 0,
+      withinGrace: todayUsage.graceRemainingSeconds > 0,
       paidActive: false,
-      includedActive: settings.plan === "SUB",
+      includedActive: false,
       elapsedSeconds: 0,
     });
   }, [settings.plan, todayUsage.graceRemainingSeconds]);
@@ -162,15 +153,9 @@ export const [AppProvider, useApp] = createContextHook(() => {
       let withinGrace = prev.withinGrace;
       let paidActive = prev.paidActive;
       let includedActive = prev.includedActive;
-      if (settings.plan === "SUB") {
-        withinGrace = false;
-        includedActive = true;
-        paidActive = false;
-      } else {
-        withinGrace = todayUsage.graceRemainingSeconds - elapsedSeconds > 0;
-        paidActive = !withinGrace;
-        includedActive = false;
-      }
+      withinGrace = todayUsage.graceRemainingSeconds - elapsedSeconds > 0;
+      paidActive = !withinGrace;
+      includedActive = false;
       return { ...prev, elapsedSeconds, withinGrace, paidActive, includedActive };
     });
   }, [settings.plan, todayUsage.graceRemainingSeconds]);
@@ -185,10 +170,10 @@ export const [AppProvider, useApp] = createContextHook(() => {
     setSession((prev) => ({ ...prev, running: false }));
     setTodayUsage((prevUsage) => {
       const used = session.elapsedSeconds;
-      const free = settings.plan === "SUB" ? 0 : Math.min(prevUsage.graceRemainingSeconds, used);
-      const paidSeconds = settings.plan === "SUB" ? Math.max(0, used - free) : Math.max(0, used - free);
-      const paidMinutesRounded = settings.plan === "SUB" ? 0 : Math.ceil(paidSeconds / 60);
-      const costCents = settings.plan === "SUB" ? 0 : paidMinutesRounded * settings.rateCents;
+      const free = Math.min(prevUsage.graceRemainingSeconds, used);
+      const paidSeconds = Math.max(0, used - free);
+      const paidMinutesRounded = Math.ceil(paidSeconds / 60);
+      const costCents = paidMinutesRounded * settings.rateCents;
       const graceRemainingSeconds = Math.max(0, prevUsage.graceRemainingSeconds - free);
       return {
         ...prevUsage,

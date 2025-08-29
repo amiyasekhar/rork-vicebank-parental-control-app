@@ -107,5 +107,5 @@ import React, { memo, useCallback, useMemo, useRef, useState } from "react";
         borderWidth: 2,
         borderColor: Colors.purpleDark,
       },
-      label: { marginTop: 8, color: Colors.textMuted, fontSize: 12 },
+      label: { marginTop: 8, color: Colors.textMuted, fontSize: 12, textAlign: "center" },
     });
