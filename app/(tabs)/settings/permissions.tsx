@@ -34,7 +34,7 @@ import React from "react";
                 <Text style={styles.label}>Notifications</Text>
                 <Text style={styles.desc}>Sends reminders and warnings when you approach limits and when protection is active.</Text>
               </View>
-              <Toggle value={p.notifications} onValueChange={(v) => updateSettings({ permissions: { ...p, notifications: v } })} disabled />
+              <Toggle value={p.notifications} onValueChange={(v) => updateSettings({ permissions: { ...p, notifications: v } })} />
             </View>
           </Card>
           <Text style={styles.privacy}>We store domains and timers, never page content. You can change these anytime.</Text>
