@@ -1,0 +1,8 @@
+[build]
+  base = "docs"
+  publish = "dist"
+  command = "bun install && bun run build"
+
+[build.environment]
+  BUN_VERSION = "1.2.20"
+
