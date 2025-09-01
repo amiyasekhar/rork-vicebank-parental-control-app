@@ -45,7 +45,7 @@ export default function App() {
         {/* no border here */}
         <div className="boxed noborder">
           <p className="sub">
-            Financial accountability to get you off of 🌽 and on top of a baddie 🍑
+            Vicebank is a financial accountability browser extension built to keep you honest about quitting porn, gambling, and other vices. Think you’re ready to quit? Then it’s time to put your money where your mouth is.
           </p>
         </div>
       </section>
@@ -62,7 +62,7 @@ export default function App() {
         {/* bottom CTA is now a centered button */}
         <div className="cta-wrapper reveal" style={{ transitionDelay: "520ms" }}>
           <button className="cta-button">
-            Your First Step Towards Being a <strong>Rizzler</strong> Starts here…
+            change starts here
           </button>
         </div>
       </section>
