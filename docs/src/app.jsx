@@ -1,4 +1,8 @@
 import { useEffect, useRef } from "react";
+import phone1 from "../public/phone-1.png";
+import phone2 from "../public/phone-2.png";
+import phone3 from "../public/phone-3.png";
+import phone4 from "../public/phone-4.png";
 
 function useReveal(options = { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }) {
   const ref = useRef(null);
@@ -49,10 +53,10 @@ export default function App() {
       {/* MOCKUPS (fade-up on scroll) */}
       <section className="mockups" ref={revealRef}>
         <div className="phones">
-          <img className="phone reveal" style={{ transitionDelay: "0ms" }} src="/phone-1.png" alt="Screen 1" />
-          <img className="phone reveal" style={{ transitionDelay: "120ms" }} src="/phone-2.png" alt="Screen 2" />
-          <img className="phone reveal" style={{ transitionDelay: "240ms" }} src="/phone-3.png" alt="Screen 3" />
-          <img className="phone reveal" style={{ transitionDelay: "360ms" }} src="/phone-4.png" alt="Screen 4" />
+          <img className="phone reveal" style={{ transitionDelay: "0ms" }} src={phone1} alt="Screen 1" />
+          <img className="phone reveal" style={{ transitionDelay: "120ms" }} src={phone2} alt="Screen 2" />
+          <img className="phone reveal" style={{ transitionDelay: "240ms" }} src={phone3} alt="Screen 3" />
+          <img className="phone reveal" style={{ transitionDelay: "360ms" }} src={phone4} alt="Screen 4" />
         </div>
 
         {/* bottom CTA is now a centered button */}
